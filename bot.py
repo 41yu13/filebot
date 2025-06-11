@@ -37,7 +37,8 @@ async def handle_file(update: Update, context: ContextTypes.DEFAULT_TYPE):
     else:
         await update.message.reply_text("File tidak dikenali.")
 
-app = ApplicationBuilder().token("7896895828:AAHiOevQlOeiDSiqgWRNQe-VOP_Alx7juAg").build()
+import os
+app = ApplicationBuilder().token(os.environ["BOT_TOKEN"]).build()
 app.add_handler(CommandHandler("start", start))
 app.add_handler(MessageHandler(filters.Document.ALL | filters.Video.ALL | filters.PHOTO, handle_file))
 
